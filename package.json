@@ -1,0 +1,29 @@
+{
+  "name": "ar.js-typescript",
+  "version": "0.1.0",
+  "description": "AR.js test with typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kalwalt/AR.js-typescript.git"
+  },
+  "keywords": [
+    "AR.js",
+    "Typescript",
+    "AugmentedReality",
+    "ARToolKit"
+  ],
+  "author": "Walter Perdan",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/kalwalt/AR.js-typescript/issues"
+  },
+  "homepage": "https://github.com/kalwalt/AR.js-typescript#readme",
+  "dependencies": {
+    "@ar-js-org/ar.js": "https://github.com/AR-js-org/AR.js.git#c3b9b50638ff50827d2c280015b20f02aa9498a5",
+    "three": "^0.148.0"
+  }
+}
