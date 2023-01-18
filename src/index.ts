@@ -1,6 +1,6 @@
-//import ArMarkerControl from "@ar-js-org/types/three.js/src/index-threex"
 import * as THREE from 'three';
-import { ArToolkitProfile, ArToolkitSource, ArToolkitContext, ArMarkerControls } from "@ar-js-org/types/three.js/src/index-threex";
+//import { ArToolkitProfile, ArToolkitSource, ArToolkitContext, ArMarkerControls } from '@ar-js-org/ar.js/types/three.js/src/index-threex';
+import { ArToolkitProfile, ArToolkitSource, ArToolkitContext, ArMarkerControls } from '@ar-js-org/ar.js/three.js/build/ar-threex';
 
 
 ArToolkitContext.baseURL = './'
@@ -18,7 +18,7 @@ renderer.domElement.style.top = '0px'
 renderer.domElement.style.left = '0px'
 document.body.appendChild(renderer.domElement); // We should be able to specify an html element to append AR.js related elements to.
 // array of functions for the rendering loop
-var onRenderFcts = [];
+var onRenderFcts: any[] = [];
 // init scene and camera
 var scene = new THREE.Scene();
 //////////////////////////////////////////////////////////////////////////////////
@@ -103,35 +103,35 @@ var markerControls = new ArMarkerControls(arToolkitContext, markerGroup, {
 //////////////////////////////////////////////////////////////////////////////////
 var markerScene = new THREE.Scene()
 markerGroup.add(markerScene)
-var mesh = new THREE.AxesHelper()
-markerScene.add(mesh)
+var axes = new THREE.AxesHelper()
+markerScene.add(axes)
 // add a torus knot
-var geometry = new THREE.BoxGeometry(1, 1, 1);
+var boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 var material = new THREE.MeshNormalMaterial({
     transparent: true,
     opacity: 0.5,
     side: THREE.DoubleSide
 });
-var mesh = new THREE.Mesh(geometry, material);
-mesh.position.y = geometry.parameters.height / 2
-markerScene.add(mesh)
-var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
+var box = new THREE.Mesh(boxGeometry, material);
+box.position.y = boxGeometry.parameters.height / 2
+markerScene.add(box)
+var torusGeometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
 var material = new THREE.MeshNormalMaterial();
-var mesh = new THREE.Mesh(geometry, material);
-mesh.position.y = 0.5
-markerScene.add(mesh);
-onRenderFcts.push(function (delta) {
-    mesh.rotation.x += delta * Math.PI
+var torus = new THREE.Mesh(torusGeometry, material);
+torus.position.y = 0.5
+markerScene.add(torus);
+onRenderFcts.push((delta: any) => {
+    torus.rotation.x += delta * Math.PI
 })
 //////////////////////////////////////////////////////////////////////////////////
 //		render the whole thing on the page
 //////////////////////////////////////////////////////////////////////////////////
-onRenderFcts.push(function () {
+onRenderFcts.push(() => {
     renderer.render(scene, camera);
 })
 // run the rendering loop
-var lastTimeMsec = null;
-requestAnimationFrame(function animate(nowMsec) {
+var lastTimeMsec: number;
+requestAnimationFrame(function animate(nowMsec: number) {
     // keep looping
     requestAnimationFrame(animate);
     // measure time
